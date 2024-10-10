@@ -15,5 +15,9 @@ echo "Creating self signed certificate..."
 openssl req -newkey rsa:4096 -x509 -sha256 -days 3650 -nodes -out /srv/data/cert/localhost.crt -keyout /srv/data/cert/localhost.key -subj "/C=/ST=/L=/O=/OU=/CN=localhost"
 #-------------------------------------------------------------------------#
 echo "Starting samba..."
-sleep 3600
+if [ -f "/srv/data/cfg/smb.conf" ]; then
+    smbd -i -s /srv/data/cfg/smb.conf
+else
+    smbd -i -s /srv/cfg/smb.conf
+fi
 #-------------------------------------------------------------------------#
