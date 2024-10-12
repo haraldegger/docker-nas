@@ -20,6 +20,7 @@ useradd $MY_USERNAME
 echo "$MY_USERNAME:$MY_PASSWORD" | chpasswd
 usermod -g root $MY_USERNAME
 usermod -d /srv/ $MY_USERNAME
+(echo $MY_PASSWORD; echo $MY_PASSWORD) | smbpasswd -a $MY_USERNAME
 #-------------------------------------------------------------------------#
 echo "Setting up folder rights..."
 chmod -R 775 /srv/*
